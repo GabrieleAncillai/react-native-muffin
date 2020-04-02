@@ -4,7 +4,8 @@
   "description": "A components package made with love and react-native original stuff",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "publish": "npm publish"
   },
   "repository": {
     "type": "git",
@@ -19,5 +20,9 @@
   "bugs": {
     "url": "https://github.com/GabrieleAncillai/react-native-muffin/issues"
   },
-  "homepage": "https://github.com/GabrieleAncillai/react-native-muffin#readme"
+  "homepage": "https://github.com/GabrieleAncillai/react-native-muffin#readme",
+  "dependencies": {
+    "react": "^16.13.1",
+    "react-native": "^0.62.0"
+  }
 }
