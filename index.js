@@ -1,5 +1,4 @@
-import Test from './src/components/Test';
+import Header from "./src/components/Header";
+import Icon from "./src/components/Icon";
 
-export default {
-    Test
-}
+export { Header, Icon };
