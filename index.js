@@ -1,6 +1,6 @@
-import test from "./src/components/test";
+import Test from "./src/components/test";
 
 export default {
-  test
+  Test
 };
 
