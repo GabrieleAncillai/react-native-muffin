@@ -23,6 +23,7 @@
   "homepage": "https://github.com/GabrieleAncillai/react-native-muffin#readme",
   "dependencies": {
     "react": "^16.13.1",
-    "react-native": "^0.62.0"
+    "react-native": "^0.62.0",
+    "lodash": "4.17.15"
   }
 }
