@@ -1,0 +1,23 @@
+{
+  "name": "react-native-muffin",
+  "version": "1.0.0",
+  "description": "A components package made with love and react-native original stuff",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GabrieleAncillai/react-native-muffin.git"
+  },
+  "keywords": [
+    "muffin",
+    "react-native"
+  ],
+  "author": "Gabriele Ancillai",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GabrieleAncillai/react-native-muffin/issues"
+  },
+  "homepage": "https://github.com/GabrieleAncillai/react-native-muffin#readme"
+}
