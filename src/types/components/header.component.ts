@@ -1,4 +1,5 @@
 import { IconNames } from "./icon.component";
+import { ThemeType } from "../settings/theme";
 
 export type HeaderProps = {
   transparent: Boolean;
@@ -24,6 +25,7 @@ export type HeaderProps = {
   search_PropName_2: String;
   search_PropName_3: String;
   autofocus: Boolean;
+  theme: ThemeType;
 };
 
 export type HeaderState = {
