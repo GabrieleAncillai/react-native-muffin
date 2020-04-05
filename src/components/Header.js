@@ -25,6 +25,17 @@ class HeaderComponent extends Component {
     }
   };
 
+  getRightStyle = () => {
+    const {searchBar, rightIconName2, rightIconName3} = this.props;
+    let sty = {};
+    if (searchBar || !rightIconName2) {
+      sty = { flex: 0.2 }
+    } else if (!rightIconName3) {
+      sty = { flex: 0.3 }
+    }
+    return sty
+  }
+
   render() {
     const {
       leftIconName,
@@ -54,9 +65,9 @@ class HeaderComponent extends Component {
         {leftIconName && (
           <View style={Styles.Left}>
             <Icon
-              Name={leftIconName}
+              name={leftIconName}
               onPress={onPressLeft}
-              Style={Styles.LeftIcon}
+              style={Styles.LeftIcon}
             />
           </View>
         )}
@@ -92,30 +103,30 @@ class HeaderComponent extends Component {
         </View>
         {rightIconName || rightIconName2 || rightIconName3 ? (
           //eslint-disable-next-line react-native/no-inline-styles
-          <View style={[Styles.Right, searchBar && { flex: 0.2 }]}>
+        <View style={[Styles.Right, this.getRightStyle()]}>
             {!searchBar && (
               <View style={Styles.row}>
                 {rightIconName3 && (
                   <Icon
-                    Name={rightIconName3}
+                    name={rightIconName3}
                     onPress={onPressRight3}
-                    Style={Styles.SearchIcon1}
+                    style={Styles.SearchIcon1}
                   />
                 )}
                 {rightIconName2 && (
                   <Icon
-                    Name={rightIconName2}
+                    name={rightIconName2}
                     onPress={onPressRight2}
-                    Style={Styles.SearchIcon1}
+                    style={Styles.SearchIcon1}
                   />
                 )}
               </View>
             )}
             {rightIconName && (
               <Icon
-                Name={searchBar ? "close" : rightIconName}
+                name={searchBar ? "close" : rightIconName}
                 onPress={searchBar ? () => this.onPressX() : onPressRight}
-                Style={Styles.SearchIcon1}
+                style={Styles.SearchIcon1}
               />
             )}
           </View>
@@ -135,14 +146,15 @@ const Styles = StyleSheet.create({
   },
   SearchInput: {
     width: "100%",
-    height: 50
+    maxHeight: 40,
   },
   Left: { flex: 0.2, justifyContent: "center", alignItems: "flex-start" },
-  Body: { flex: 1, padding: 8, justifyContent: "center" },
+  Body: { flex: 1, padding: 8, paddingLeft: 18, justifyContent: "center" },
   Right: {
     flex: 1,
     justifyContent: "flex-end",
     flexDirection: "row",
+    alignItems: 'center',
     marginRight: 6
   },
   center: { alignItems: "center" },
@@ -151,15 +163,14 @@ const Styles = StyleSheet.create({
     color: "blue",
     fontSize: 20,
     lineHeight: 24,
-    fontWeight: "bold",
+    fontWeight: '800',
     textAlign: "left"
   },
   container: {
     flexDirection: "row",
     justifyContent: "center",
-    backgroundColor: "grey",
-    elevation: 4,
-    minHeight: 56
+    backgroundColor: "white",
+    minHeight: 56,
   }
 });
 

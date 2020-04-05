@@ -1,7 +1,8 @@
 import Header from "./src/components/Header";
 import Icon from "./src/components/Icon";
+import Dialog from "./src/components/Dialog";
 import {SimpleAlert, CopyToClipboard} from './src/utils/functions';
 
-export { Header, Icon, SimpleAlert, CopyToClipboard };
+export { Header, Icon, Dialog, SimpleAlert, CopyToClipboard };
 
 

@@ -42,7 +42,7 @@ export const Icons = {
   light: require("../icons/light.png"),
   list: require("../icons/list-order.png"),
   "log-out": require("../icons/log-out-outline.png"),
-  menu: require("../icons/environment.png"),
+  menu: require("../icons/menu-outline.png"),
   message: require("../icons/message-circle-outline.png"),
   microphone: require("../icons/mic-outline.png"),
   "minus-circle": require("../icons/minus-circle-outline.png"),
