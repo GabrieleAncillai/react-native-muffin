@@ -16,7 +16,7 @@
     "react-native"
   ],
   "author": "Gabriele Ancillai",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/GabrieleAncillai/react-native-muffin/issues"
   },
