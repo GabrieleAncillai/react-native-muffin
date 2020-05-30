@@ -1,5 +1,5 @@
-import {Alert, Clipboard} from 'react-native';
-import _ from 'lodash';
+import { Alert, Clipboard } from "react-native";
+import _ from "lodash";
 
 /**
  * @dependence '_' from 'lodash'
@@ -16,15 +16,15 @@ export const FilterData = (data, text, propName1, propName2, propName3) => {
     FilteredData = data;
   } else {
     const filter = text.toUpperCase();
-    let results = data.filter(item => {
+    let results = data.filter((item) => {
       return _.includes(item[propName1].toUpperCase(), filter);
     });
     if (results === "" || (results === undefined && propName2)) {
-      results = data.filter(item => {
+      results = data.filter((item) => {
         return _.includes(item[propName2].toUpperCase(), filter);
       });
       if (results === "" || (results === undefined && propName3)) {
-        results = data.filter(item => {
+        results = data.filter((item) => {
           return _.includes(item[propName3].toUpperCase(), filter);
         });
       }
@@ -58,25 +58,62 @@ export const SimpleAlert = (
   let Button2;
   if (LeftButtonText) {
     Button2 = {
-      text: LeftButtonText ? LeftButtonText : 'Cancel',
+      text: LeftButtonText ? LeftButtonText : "Cancel",
       onPress: () => onPressLeftButton && onPressLeftButton(),
     };
     Buttons.push(Button2);
   }
   if (RightButtonText) {
     Button1 = {
-      text: RightButtonText ? RightButtonText : 'Ok',
+      text: RightButtonText ? RightButtonText : "Ok",
       onPress: () => onPressRightButton && onPressRightButton(),
     };
     Buttons.push(Button1);
   }
+  Alert.alert(Title ? Title : "Alert", SubTitle && SubTitle, Buttons, {
+    cancelable: Cancelable && Cancelable,
+  });
+};
 
-  Alert.alert(Title ? Title : 'Alert', SubTitle && SubTitle, Buttons, {cancelable: Cancelable && Cancelable});
+/**
+ * @param {Config} Config Title of the Alert
+ * @returns {AlertType} Returns a ReactNative Alert with default values if null and with assigned values if data
+ */
+export const ConfigAlert = (Config) => {
+  const {
+    Title,
+    SubTitle,
+    RightButtonText,
+    onPressRightButton,
+    LeftButtonText,
+    onPressLeftButton,
+    Cancelable,
+  } = Config;
+  let Buttons = [];
+  let Button1;
+  let Button2;
+  if (LeftButtonText) {
+    Button2 = {
+      text: LeftButtonText ? LeftButtonText : "Cancel",
+      onPress: () => onPressLeftButton && onPressLeftButton(),
+    };
+    Buttons.push(Button2);
+  }
+  if (RightButtonText) {
+    Button1 = {
+      text: RightButtonText ? RightButtonText : "Ok",
+      onPress: () => onPressRightButton && onPressRightButton(),
+    };
+    Buttons.push(Button1);
+  }
+  Alert.alert(Title ? Title : "Alert", SubTitle && SubTitle, Buttons, {
+    cancelable: Cancelable && Cancelable,
+  });
 };
 
 /**
  * @param {String} Text Send as parameter the text you want to copy on your clipboard
  */
-export const CopyToClipboard = Text => {
+export const CopyToClipboard = (Text) => {
   Clipboard.setString(Text);
 };

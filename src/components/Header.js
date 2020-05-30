@@ -9,7 +9,7 @@ import { FilterData } from "../utils/functions";
  */
 class HeaderComponent extends Component {
   state = {
-    SearchText: ""
+    SearchText: "",
   };
 
   onPressX = () => {
@@ -26,15 +26,15 @@ class HeaderComponent extends Component {
   };
 
   getRightStyle = () => {
-    const {searchBar, rightIconName2, rightIconName3} = this.props;
+    const { searchBar, rightIconName2, rightIconName3 } = this.props;
     let sty = {};
     if (searchBar || !rightIconName2) {
-      sty = { flex: 0.2 }
+      sty = { flex: 0.2 };
     } else if (!rightIconName3) {
-      sty = { flex: 0.3 }
+      sty = { flex: 0.3 };
     }
-    return sty
-  }
+    return sty;
+  };
 
   render() {
     const {
@@ -57,7 +57,7 @@ class HeaderComponent extends Component {
       onChangeText,
       autofocus,
       onSubmitSearch,
-      cleanTextOnSubmit
+      cleanTextOnSubmit,
     } = this.props;
     const { SearchText } = this.state;
     return (
@@ -82,7 +82,7 @@ class HeaderComponent extends Component {
                 onSubmitSearch && onSubmitSearch(SearchText);
                 cleanTextOnSubmit && this.setState({ SearchText: "" });
               }}
-              onChangeText={text => {
+              onChangeText={(text) => {
                 this.setState({ SearchText: text });
                 onChangeText && onChangeText(text);
                 onChangeSearchBar &&
@@ -103,7 +103,7 @@ class HeaderComponent extends Component {
         </View>
         {rightIconName || rightIconName2 || rightIconName3 ? (
           //eslint-disable-next-line react-native/no-inline-styles
-        <View style={[Styles.Right, this.getRightStyle()]}>
+          <View style={[Styles.Right, this.getRightStyle()]}>
             {!searchBar && (
               <View style={Styles.row}>
                 {rightIconName3 && (
@@ -139,10 +139,10 @@ class HeaderComponent extends Component {
 const Styles = StyleSheet.create({
   LeftIcon: {},
   SearchIcon1: {
-    marginVertical: 10
+    marginVertical: 10,
   },
   IconColor: {
-    color: "blue"
+    color: "blue",
   },
   SearchInput: {
     width: "100%",
@@ -154,24 +154,24 @@ const Styles = StyleSheet.create({
     flex: 1,
     justifyContent: "flex-end",
     flexDirection: "row",
-    alignItems: 'center',
-    marginRight: 6
+    alignItems: "center",
+    marginRight: 6,
   },
   center: { alignItems: "center" },
   row: { flexDirection: "row" },
   TitleStyle: {
-    color: "blue",
+    color: "black",
     fontSize: 20,
     lineHeight: 24,
-    fontWeight: '800',
-    textAlign: "left"
+    fontWeight: "800",
+    textAlign: "left",
   },
   container: {
     flexDirection: "row",
     justifyContent: "center",
     backgroundColor: "white",
     minHeight: 56,
-  }
+  },
 });
 
 export default HeaderComponent;
