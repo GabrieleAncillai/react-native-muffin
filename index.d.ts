@@ -46,4 +46,25 @@ declare module "react-native-muffin" {
    * @param {String} TextToCopy Text is going to be copied to clipboard
    */
   export function CopyToClipboard(TextToCopy: String): void;
+
+  /**
+   * @param {{}} Objct
+   * @returns {Boolean} Returns true if Object has any key. if object == {} returns false
+   */
+  export function ValidateEmptyObject(Objct: Object): Boolean;
+
+  /**
+   * @param {Number} number
+   * @returns {Number} Returns a fixed rounded number with 2 decimals
+   */
+  export function RoundFixed2(number: Number): Number;
+
+  /**
+   * @param {{InitialReducer: Object, CurrentReducer: Object}} param
+   * @returns {{}}
+   */
+  export function UpdateReducer(param: {
+    InitialReducer: Object;
+    CurrentReducer: Object;
+  }): Object;
 }

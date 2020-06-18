@@ -1,6 +1,6 @@
 {
   "name": "react-native-muffin",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A components package made with love and react-native original stuff",
   "main": "index.js",
   "scripts": {

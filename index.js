@@ -5,6 +5,19 @@ import {
   SimpleAlert,
   CopyToClipboard,
   ConfigAlert,
+  ValidateEmptyObject,
+  RoundFixed2,
+  UpdateReducer,
 } from "./src/utils/functions";
 
-export { Header, Icon, Dialog, SimpleAlert, CopyToClipboard, ConfigAlert };
+export {
+  Header,
+  Icon,
+  Dialog,
+  SimpleAlert,
+  CopyToClipboard,
+  ConfigAlert,
+  ValidateEmptyObject,
+  RoundFixed2,
+  UpdateReducer,
+};

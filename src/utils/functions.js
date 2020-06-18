@@ -1,5 +1,6 @@
 import { Alert, Clipboard } from "react-native";
 import _ from "lodash";
+import { AlertConfigType } from "../types/functions/alert.functions";
 
 /**
  * @dependence '_' from 'lodash'
@@ -76,38 +77,38 @@ export const SimpleAlert = (
 };
 
 /**
- * @param {Config} Config Title of the Alert
+ * @param {AlertConfigType} Config Title of the Alert
  * @returns {AlertType} Returns a ReactNative Alert with default values if null and with assigned values if data
  */
 export const ConfigAlert = (Config) => {
   const {
-    Title,
-    SubTitle,
-    RightButtonText,
+    title,
+    subTitle,
+    rightButtonText,
     onPressRightButton,
-    LeftButtonText,
+    leftButtonText,
     onPressLeftButton,
-    Cancelable,
+    cancelable,
   } = Config;
   let Buttons = [];
   let Button1;
   let Button2;
-  if (LeftButtonText) {
+  if (leftButtonText) {
     Button2 = {
-      text: LeftButtonText ? LeftButtonText : "Cancel",
+      text: leftButtonText ? leftButtonText : "Cancel",
       onPress: () => onPressLeftButton && onPressLeftButton(),
     };
     Buttons.push(Button2);
   }
-  if (RightButtonText) {
+  if (rightButtonText) {
     Button1 = {
-      text: RightButtonText ? RightButtonText : "Ok",
+      text: rightButtonText ? rightButtonText : "Ok",
       onPress: () => onPressRightButton && onPressRightButton(),
     };
     Buttons.push(Button1);
   }
-  Alert.alert(Title ? Title : "Alert", SubTitle && SubTitle, Buttons, {
-    cancelable: Cancelable && Cancelable,
+  Alert.alert(title ? title : "Alert", subTitle && subTitle, Buttons, {
+    cancelable: cancelable && cancelable,
   });
 };
 
@@ -116,4 +117,90 @@ export const ConfigAlert = (Config) => {
  */
 export const CopyToClipboard = (Text) => {
   Clipboard.setString(Text);
+};
+
+/**
+ * @param {{}} Objct
+ * @returns {Boolean} Returns true if Object has any key. if object == {} returns false
+ */
+export const ValidateEmptyObject = (Objct) => {
+  return Object.keys(Objct).length > 0;
+};
+
+/**
+ * @param {{}} Obj1
+ * @param {{}} Obj2
+ */
+export const CompareTwoObjects = (Obj1, Obj2) => {
+  if (typeof Obj1 === "object" && typeof Obj2 === "object") {
+    return JSON.stringify(Obj1) === JSON.stringify(Obj2);
+  } else {
+    return false;
+  }
+};
+
+/**
+ * @param {Number} number
+ * @returns {Number}
+ */
+export const RoundFixed2 = (number) => {
+  return Math.round((number + Number.EPSILON) * 100) / 100;
+};
+
+/**
+ * @param {{InitialReducer: Object, CurrentReducer: Object}} param0
+ * @returns {{}}
+ */
+export const UpdateReducer = ({ InitialReducer, CurrentReducer }) => {
+  let NewReducer = {};
+  if (
+    InitialReducer &&
+    CurrentReducer &&
+    ValidateEmptyObject(InitialReducer) &&
+    ValidateEmptyObject(CurrentReducer)
+  ) {
+    NewReducer = { ...CurrentReducer };
+    Object.keys(InitialReducer).forEach(async (prop) => {
+      const validation =
+        (typeof InitialReducer[prop] !== "object" &&
+          InitialReducer[prop] !== CurrentReducer[prop]) ||
+        (typeof InitialReducer[prop] === "object" &&
+          !CompareTwoObjects(InitialReducer[prop], CurrentReducer[prop]));
+
+      if (validation) {
+        const NewProp = await CompareKeys({
+          InitKey: InitialReducer[prop],
+          CurrentKey: CurrentReducer[prop],
+        });
+        NewReducer[prop] = NewProp;
+      }
+    });
+  }
+  return NewReducer;
+};
+
+/**
+ * @param {{InitKey: Object, CurrentKey: Object}} param0
+ * @returns {any}
+ */
+const CompareKeys = async ({ InitKey, CurrentKey }) => {
+  let NewKey = CurrentKey;
+  if (InitKey && InitKey !== undefined) {
+    if (!CurrentKey || CurrentKey === undefined) {
+      NewKey = InitKey;
+    } else if (
+      typeof CurrentKey === "object" &&
+      ValidateEmptyObject(CurrentKey)
+    ) {
+      Object.keys(CurrentKey).forEach(async (key) => {
+        NewKey = await CompareKeys({
+          InitKey: InitKey[key],
+          CurrentKey: CurrentKey[key],
+        });
+      });
+    } else {
+      NewKey = CurrentKey;
+    }
+  }
+  return NewKey;
 };
