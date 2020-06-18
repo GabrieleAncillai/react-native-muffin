@@ -31,7 +31,7 @@ class HeaderComponent extends Component {
     if (searchBar || !rightIconName2) {
       sty = { flex: 0.2 };
     } else if (!rightIconName3) {
-      sty = { flex: 0.3 };
+      sty = { flex: 0.28 };
     }
     return sty;
   };
@@ -78,6 +78,11 @@ class HeaderComponent extends Component {
               placeholder={placeholder ? placeholder : "Search"}
               style={Styles.SearchInput}
               value={SearchText}
+              // { - - NEW - - -
+              autoCorrect={false}
+              autoCapitalize="none"
+              placeholderTextColor={themedStyle.SearchInput.color}
+              // - - - NEW - - }
               onSubmitEditing={() => {
                 onSubmitSearch && onSubmitSearch(SearchText);
                 cleanTextOnSubmit && this.setState({ SearchText: "" });
@@ -86,6 +91,8 @@ class HeaderComponent extends Component {
                 this.setState({ SearchText: text });
                 onChangeText && onChangeText(text);
                 onChangeSearchBar &&
+                  data &&
+                  data.length > 0 &&
                   onChangeSearchBar(
                     FilterData(
                       data,
@@ -102,33 +109,32 @@ class HeaderComponent extends Component {
           )}
         </View>
         {rightIconName || rightIconName2 || rightIconName3 ? (
-          //eslint-disable-next-line react-native/no-inline-styles
           <View style={[Styles.Right, this.getRightStyle()]}>
-            {!searchBar && (
+            {!searchBar ? (
               <View style={Styles.row}>
-                {rightIconName3 && (
+                {rightIconName3 ? (
                   <Icon
                     name={rightIconName3}
                     onPress={onPressRight3}
                     style={Styles.SearchIcon1}
                   />
-                )}
-                {rightIconName2 && (
+                ) : null}
+                {rightIconName2 ? (
                   <Icon
                     name={rightIconName2}
                     onPress={onPressRight2}
                     style={Styles.SearchIcon1}
                   />
-                )}
+                ) : null}
               </View>
-            )}
-            {rightIconName && (
+            ) : null}
+            {rightIconName ? (
               <Icon
                 name={searchBar ? "close" : rightIconName}
                 onPress={searchBar ? () => this.onPressX() : onPressRight}
                 style={Styles.SearchIcon1}
               />
-            )}
+            ) : null}
           </View>
         ) : null}
       </SafeAreaView>

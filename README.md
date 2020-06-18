@@ -83,16 +83,18 @@ class SomeComponent extends Component {
 #### *Usage*:
 
 ```js
-import { Icon } from "react-native-muffin";
+import { Dialog } from "react-native-muffin";
 
 class SomeComponent extends Component {
   render() {
     return (
-      <Icon
-        name={"bell"}
-        size={20}
-        color={"grey"}
-        onPress={() => console.log("Icon Pressed!")}
+      <Dialog
+        visible
+        title={'Hello'}
+        message={'World!'}
+        buttons={[() => (
+          <Button>{'Ok'}</Button>
+        )]}
       />
     );
   }
