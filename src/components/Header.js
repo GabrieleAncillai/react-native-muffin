@@ -79,9 +79,9 @@ class HeaderComponent extends Component {
               style={Styles.SearchInput}
               value={SearchText}
               // { - - NEW - - -
-              autoCorrect={false}
-              autoCapitalize="none"
-              placeholderTextColor={themedStyle.SearchInput.color}
+              //autoCorrect={false}
+              //autoCapitalize="none"
+              //placeholderTextColor={themedStyle.SearchInput.color}
               // - - - NEW - - }
               onSubmitEditing={() => {
                 onSubmitSearch && onSubmitSearch(SearchText);

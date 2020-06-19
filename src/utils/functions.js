@@ -38,7 +38,7 @@ export const FilterData = (data, text, propName1, propName2, propName3) => {
 /**
  * @param {String} Title Title of the Alert
  * @param {String} SubTitle Subtitle of the Alert
- * @param {String} RightButtonText  Title of right button
+ * @param {String} RightButtonText Title of right button
  * @param {Function} onPressRightButton Function executed on press right button
  * @param {String} LeftButtonText Title of left button
  * @param {Function} onPressLeftButton Function executed on press left button
