@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Icon from "./Icon";
 import { HeaderProps, HeaderState } from "../types/components/header.component";
 import { SafeAreaView, View, Text, TextInput, StyleSheet } from "react-native";
-import { FilterData } from "../utils/functions";
+import { FilterData, Validate } from "../utils/functions";
 
 /**
  * @extends {Component<HeaderProps, HeaderState>}
@@ -25,64 +25,54 @@ class HeaderComponent extends Component {
     }
   };
 
-  getRightStyle = () => {
-    const { searchBar, rightIconName2, rightIconName3 } = this.props;
-    let sty = {};
-    if (searchBar || !rightIconName2) {
-      sty = { flex: 0.2 };
-    } else if (!rightIconName3) {
-      sty = { flex: 0.28 };
-    }
-    return sty;
-  };
-
   render() {
     const {
-      leftIconName,
-      rightIconName,
-      rightIconName2,
-      rightIconName3,
-      onPressLeft,
-      onPressRight,
-      onPressRight2,
-      onPressRight3,
+      leftIcons,
+      rightIcons,
       title,
       searchBar,
       placeholder,
       data,
-      search_PropName_1,
-      search_PropName_2,
-      search_PropName_3,
+      searchPropNames,
       onChangeSearchBar,
       onChangeText,
-      autofocus,
       onSubmitSearch,
       cleanTextOnSubmit,
+      theme,
+      autoCapitalize,
+      autoCorrect,
+      autoFocus,
     } = this.props;
     const { SearchText } = this.state;
     return (
       <SafeAreaView style={Styles.container}>
-        {leftIconName && (
+        {Validate(leftIcons) && leftIcons?.length > 0 ? (
           <View style={Styles.Left}>
-            <Icon
-              name={leftIconName}
-              onPress={onPressLeft}
-              style={Styles.LeftIcon}
-            />
+            {leftIcons.map((icon, index) => {
+              return (
+                <Icon
+                  key={`key-${icon.name}-${index}`}
+                  name={icon.name}
+                  onPress={icon.onPress}
+                  iconStyle={
+                    icon.style ? icon.style : { tintColor: theme.Primary }
+                  }
+                />
+              );
+            })}
           </View>
-        )}
+        ) : null}
+
         <View style={[Styles.Body, searchBar && { flex: 0.8 }]}>
           {searchBar && searchBar ? (
             <TextInput
-              autoFocus={autofocus}
               placeholder={placeholder ? placeholder : "Search"}
               style={Styles.SearchInput}
               value={SearchText}
-              // { - - NEW - - -
-              //autoCorrect={false}
-              //autoCapitalize="none"
-              //placeholderTextColor={themedStyle.SearchInput.color}
-              // - - - NEW - - }
+              autoFocus={autoFocus}
+              autoCorrect={autoCorrect}
+              autoCapitalize={autoCapitalize}
+              placeholderTextColor={theme?.Primary}
               onSubmitEditing={() => {
                 onSubmitSearch && onSubmitSearch(SearchText);
                 cleanTextOnSubmit && this.setState({ SearchText: "" });
@@ -93,48 +83,35 @@ class HeaderComponent extends Component {
                 onChangeSearchBar &&
                   data &&
                   data.length > 0 &&
-                  onChangeSearchBar(
-                    FilterData(
-                      data,
-                      text,
-                      search_PropName_1,
-                      search_PropName_2,
-                      search_PropName_3
-                    )
-                  );
+                  onChangeSearchBar(FilterData(data, text, searchPropNames));
               }}
             />
           ) : (
             <Text style={Styles.TitleStyle}>{title}</Text>
           )}
         </View>
-        {rightIconName || rightIconName2 || rightIconName3 ? (
-          <View style={[Styles.Right, this.getRightStyle()]}>
+        {Validite(rightIcons) && rightIcons?.length > 0 ? (
+          <View style={Styles.Right}>
             {!searchBar ? (
-              <View style={Styles.row}>
-                {rightIconName3 ? (
+              rightIcons.map((icon, index) => {
+                return (
                   <Icon
-                    name={rightIconName3}
-                    onPress={onPressRight3}
-                    style={Styles.SearchIcon1}
+                    key={`key-${icon.name}-${index}`}
+                    name={icon.name}
+                    onPress={icon.onPress}
+                    iconStyle={
+                      icon.style ? icon.style : { tintColor: theme.Primary }
+                    }
                   />
-                ) : null}
-                {rightIconName2 ? (
-                  <Icon
-                    name={rightIconName2}
-                    onPress={onPressRight2}
-                    style={Styles.SearchIcon1}
-                  />
-                ) : null}
-              </View>
-            ) : null}
-            {rightIconName ? (
+                );
+              })
+            ) : (
               <Icon
-                name={searchBar ? "close" : rightIconName}
-                onPress={searchBar ? () => this.onPressX() : onPressRight}
-                style={Styles.SearchIcon1}
+                name={"close"}
+                onPress={this.onPressX}
+                style={[Styles.SearchIcon1, { tintColor: theme.Primary }]}
               />
-            ) : null}
+            )}
           </View>
         ) : null}
       </SafeAreaView>

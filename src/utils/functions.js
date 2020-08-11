@@ -1,36 +1,28 @@
 import { Alert, Clipboard } from "react-native";
-import _ from "lodash";
 import { AlertConfigType } from "../types/functions/alert.functions";
 
 /**
- * @dependence '_' from 'lodash'
- * @param {Array} data An array of the data you want to filter
+ * @param {Array<Object>} data An array of the data you want to filter
  * @param {String} text Equivalent to the filter's SearchText
- * @param {String} propName1 First prop name to search for in object from provided data
- * @param {String} propName2 Second prop name to search for in object from provided data
- * @param {String} propName3 Third prop name to search for in object from provided data
+ * @param {Array<String>} searchProps Array of prop names to search for in object from provided data
  * @returns {Array<Object>} Returns an array of the input's filtered data by all the input's propNames
  */
-export const FilterData = (data, text, propName1, propName2, propName3) => {
+export const FilterData = (data, text, searchProps) => {
   let FilteredData = [];
   if (text === "") {
     FilteredData = data;
   } else {
     const filter = text.toUpperCase();
-    let results = data.filter((item) => {
-      return _.includes(item[propName1].toUpperCase(), filter);
-    });
-    if (results === "" || (results === undefined && propName2)) {
-      results = data.filter((item) => {
-        return _.includes(item[propName2].toUpperCase(), filter);
+    searchProps.forEach((propName) => {
+      const Try = data.filter((item) => {
+        const Name = item[propName]?.toUpperCase();
+        return Name?.includes(filter);
       });
-      if (results === "" || (results === undefined && propName3)) {
-        results = data.filter((item) => {
-          return _.includes(item[propName3].toUpperCase(), filter);
-        });
+      if (Validate(Try) && Try.length && Try.length > 0) {
+        FilterData = Try;
+        break;
       }
-    }
-    FilteredData = results;
+    });
   }
   return FilteredData;
 };
@@ -120,16 +112,18 @@ export const CopyToClipboard = (Text) => {
 };
 
 /**
- * @param {{}} Objct
- * @returns {Boolean} Returns true if Object has any key. if object == {} returns false
+ * @param {{}} Objct Like a regular validation but returns false if object doesn't have any key or attribute
+ * @returns {Boolean}
  */
 export const ValidateEmptyObject = (Objct) => {
-  return Object.keys(Objct).length > 0;
+  return Validate(Objct) && Object.keys(Objct).length > 0;
 };
 
 /**
+ * @description Compares similarities between 2 objects and returns true if they are equal, otherwise, returns false
  * @param {{}} Obj1
  * @param {{}} Obj2
+ * @returns {Boolean}
  */
 export const CompareTwoObjects = (Obj1, Obj2) => {
   if (typeof Obj1 === "object" && typeof Obj2 === "object") {
@@ -166,7 +160,6 @@ export const UpdateReducer = ({ InitialReducer, CurrentReducer }) => {
           InitialReducer[prop] !== CurrentReducer[prop]) ||
         (typeof InitialReducer[prop] === "object" &&
           !CompareTwoObjects(InitialReducer[prop], CurrentReducer[prop]));
-
       if (validation) {
         const NewProp = await CompareKeys({
           InitKey: InitialReducer[prop],
@@ -180,7 +173,7 @@ export const UpdateReducer = ({ InitialReducer, CurrentReducer }) => {
 };
 
 /**
- * @param {{InitKey: Object, CurrentKey: Object}} param0
+ * @param {{InitKey: Object, CurrentKey: Object}} config
  * @returns {any}
  */
 const CompareKeys = async ({ InitKey, CurrentKey }) => {
@@ -203,4 +196,12 @@ const CompareKeys = async ({ InitKey, CurrentKey }) => {
     }
   }
   return NewKey;
+};
+
+/**
+ * @description Like a regular validation but returns false even if input is equal to "undefined"
+ * @param {any} something
+ */
+export const Validate = (something) => {
+  return something && something !== undefined;
 };

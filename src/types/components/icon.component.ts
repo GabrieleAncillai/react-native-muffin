@@ -1,90 +1,24 @@
-import { StyleProp, ViewStyle } from "react-native";
+import {
+  StyleProp,
+  ViewStyle,
+  ImageProps,
+  TouchableWithoutFeedbackProps,
+} from "react-native";
+import { OriginalIconNames } from "../../packs/Original/types";
+import { InterfaceIconNames } from "../../packs/Interface/types";
 
 export type IconProps = {
-  color: String;
-  name: IconNames;
-  size: String;
-  onPress: Function;
-  style: StyleProp<ViewStyle>;
+  color?: String | "blue";
+  name?: IconNames | "person";
+  size?: Number | 25;
+  onPress?: () => void;
+  family?: IconFamilies | "Original";
+  style?: TouchableWithoutFeedbackProps["style"];
+  iconStyle?: ImageProps["style"];
 };
 
 export type IconState = {};
 
-export type IconNames =
-  | "cart-plus"
-  | "warning"
-  | "award"
-  | "arrow-down"
-  | "arrow-back"
-  | "arrow-forward"
-  | "barcode"
-  | "bell-off"
-  | "bell"
-  | "bluetooth"
-  | "calendar"
-  | "camera"
-  | "car"
-  | "cart"
-  | "checkmark"
-  | "checkmark-square"
-  | "clipboard"
-  | "close"
-  | "code"
-  | "color-palette"
-  | "compass"
-  | "copy"
-  | "arrow-up-right"
-  | "credit-card"
-  | "cube"
-  | "dark"
-  | "edit"
-  | "email"
-  | "environment"
-  | "eye-off"
-  | "eye-on"
-  | "file"
-  | "folder"
-  | "fulfillment"
-  | "globe"
-  | "grid"
-  | "hash"
-  | "home"
-  | "id-card"
-  | "document"
-  | "layers"
-  | "light"
-  | "list"
-  | "log-out"
-  | "menu"
-  | "message"
-  | "microphone"
-  | "minus-circle"
-  | "minus"
-  | "more-horizontal"
-  | "more-vertical"
-  | "multidirectional-arrows"
-  | "options-horizontal"
-  | "options-vertical"
-  | "payment"
-  | "people"
-  | "percent"
-  | "person-done"
-  | "person"
-  | "phone-call"
-  | "location"
-  | "plus-circle"
-  | "plus"
-  | "pos"
-  | "printer"
-  | "question"
-  | "quote"
-  | "seal"
-  | "search"
-  | "settings"
-  | "shopping-cart"
-  | "spain"
-  | "sync"
-  | "text"
-  | "trash"
-  | "uk"
-  | "undo";
+export type IconFamilies = "Original" | "Interface" | "Creative";
+
+export type IconNames = OriginalIconNames & InterfaceIconNames;

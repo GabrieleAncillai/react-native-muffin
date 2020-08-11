@@ -13,22 +13,24 @@ class Icon extends Component {
       size,
       color = "blue",
       onPress,
-      style
+      style,
+      family = "Original",
+      iconStyle,
     } = this.props;
     const FinalSize = size ? size : 25;
     const TOPlus = 18 + FinalSize;
     return (
       <TouchableOpacity
         onPress={onPress && onPress}
-        style={[{ height: TOPlus, width: TOPlus, ...Styles.IconStyle }]}
+        style={[{ height: TOPlus, width: TOPlus, ...Styles.IconStyle }, style]}
         disabled={!onPress}
       >
         <Image
-          source={Icons[name]}
+          source={Icons[family][name]}
           style={[
             Styles.IconStyle,
             { height: FinalSize, width: FinalSize, tintColor: color },
-            style
+            iconStyle,
           ]}
         />
       </TouchableOpacity>
@@ -37,7 +39,7 @@ class Icon extends Component {
 }
 
 const Styles = StyleSheet.create({
-  IconStyle: { justifyContent: "center", alignItems: "center" }
+  IconStyle: { justifyContent: "center", alignItems: "center" },
 });
 
-export default Icon
+export default Icon;

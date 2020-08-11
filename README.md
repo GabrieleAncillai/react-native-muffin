@@ -185,7 +185,7 @@ Copies into the device clipboard the text sent to the function
 
 ### - ValidateEmptyObject()
 
-Validates if an object is empty
+Like a regular validation but returns false if object doesn't have any key or attribute
 
 #### _Param_:
 

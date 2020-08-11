@@ -1,33 +1,35 @@
-import { IconNames } from "./icon.component";
+import { IconNames, IconFamilies } from "./icon.component";
 import { ThemeType } from "../settings/theme";
+import { TextInputProps } from "react-native";
 
 export type HeaderProps = {
-  transparent: Boolean;
   title: String;
-  placeholder: String;
-  leftIconName: IconNames;
-  rightIconName: IconNames;
-  rightIconName2: IconNames;
-  rightIconName3: IconNames;
-  onPressRight: () => void;
-  onPressRight2: () => void;
-  onPressRight3: () => void;
-  onPressLeft: () => void;
-  onPressX: () => void;
-  onPressXAndTextIsEmpty: () => void;
-  onChangeText: (text: String) => {};
-  onChangeSearchBar: (FilteredData: Array<any>) => {};
-  onSubmitSearch: (text: String) => {};
-  cleanTextOnSubmit: Boolean;
-  searchBar: Boolean;
-  data: Array<any>;
-  search_PropName_1: String;
-  search_PropName_2: String;
-  search_PropName_3: String;
-  autofocus: Boolean;
-  theme: ThemeType;
+  placeholder?: String;
+  transparent?: Boolean;
+  leftIcons?: Array<IconHandlerType>;
+  rightIcons?: Array<IconHandlerType>;
+  onPressX?: () => void;
+  onPressXAndTextIsEmpty?: () => void;
+  onChangeText?: (text: String) => {};
+  onChangeSearchBar?: (FilteredData: Array<any>) => {};
+  onSubmitSearch?: (text: String) => {};
+  cleanTextOnSubmit?: Boolean;
+  searchBar?: Boolean;
+  data?: Array<any>;
+  searchPropNames?: Array<String>;
+  autoFocus?: TextInputProps["autoFocus"];
+  autoCorrect?: TextInputProps["autoCorrect"];
+  autoCapitalize?: TextInputProps["autoCapitalize"];
+  theme?: ThemeType;
 };
 
 export type HeaderState = {
   SearchText: String;
+};
+
+type IconHandlerType = {
+  name: IconNames;
+  family?: IconFamilies;
+  onPress?: () => any;
+  style?: Object;
 };
