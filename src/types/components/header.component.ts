@@ -1,13 +1,13 @@
-import { IconNames, IconFamilies } from "./icon.component";
+import { IconNames, IconFamilies, IconProps } from "./icon.component";
 import { ThemeType } from "../settings/theme";
-import { TextInputProps } from "react-native";
+import { TextInputProps, FlexStyle } from "react-native";
 
 export type HeaderProps = {
   title: String;
   placeholder?: String;
   transparent?: Boolean;
-  leftIcons?: Array<IconHandlerType>;
-  rightIcons?: Array<IconHandlerType>;
+  leftIcons?: Array<IconProps>;
+  rightIcons?: Array<IconProps>;
   onPressX?: () => void;
   onPressXAndTextIsEmpty?: () => void;
   onChangeText?: (text: String) => {};
@@ -20,6 +20,7 @@ export type HeaderProps = {
   autoFocus?: TextInputProps["autoFocus"];
   autoCorrect?: TextInputProps["autoCorrect"];
   autoCapitalize?: TextInputProps["autoCapitalize"];
+  titleAlign: FlexStyle['alignItems']
   theme?: ThemeType;
 };
 
@@ -27,9 +28,3 @@ export type HeaderState = {
   SearchText: String;
 };
 
-type IconHandlerType = {
-  name: IconNames;
-  family?: IconFamilies;
-  onPress?: () => any;
-  style?: Object;
-};

@@ -19,8 +19,7 @@ export const FilterData = (data, text, searchProps) => {
         return Name?.includes(filter);
       });
       if (Validate(Try) && Try.length && Try.length > 0) {
-        FilterData = Try;
-        break;
+        FilteredData = Try;
       }
     });
   }

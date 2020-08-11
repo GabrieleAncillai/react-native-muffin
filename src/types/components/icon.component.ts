@@ -21,4 +21,4 @@ export type IconState = {};
 
 export type IconFamilies = "Original" | "Interface" | "Creative";
 
-export type IconNames = OriginalIconNames & InterfaceIconNames;
+export type IconNames = OriginalIconNames | InterfaceIconNames;

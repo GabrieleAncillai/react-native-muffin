@@ -42,37 +42,34 @@ class HeaderComponent extends Component {
       autoCapitalize,
       autoCorrect,
       autoFocus,
+      titleAlign
     } = this.props;
     const { SearchText } = this.state;
     return (
-      <SafeAreaView style={Styles.container}>
+      <SafeAreaView style={[Styles.container, theme && {backgroundColor: theme.Background}]}>
         {Validate(leftIcons) && leftIcons?.length > 0 ? (
           <View style={Styles.Left}>
             {leftIcons.map((icon, index) => {
               return (
                 <Icon
                   key={`key-${icon.name}-${index}`}
-                  name={icon.name}
-                  onPress={icon.onPress}
-                  iconStyle={
-                    icon.style ? icon.style : { tintColor: theme.Primary }
-                  }
+                  color={theme && theme.Primary}
+                  {...icon}
                 />
               );
             })}
           </View>
         ) : null}
-
-        <View style={[Styles.Body, searchBar && { flex: 0.8 }]}>
+        <View style={[Styles.Body, {alignItems: titleAlign}]}>
           {searchBar && searchBar ? (
             <TextInput
               placeholder={placeholder ? placeholder : "Search"}
-              style={Styles.SearchInput}
+              style={[Styles.SearchInput, theme && {color: theme.TextColor}]}
               value={SearchText}
               autoFocus={autoFocus}
               autoCorrect={autoCorrect}
               autoCapitalize={autoCapitalize}
-              placeholderTextColor={theme?.Primary}
+              placeholderTextColor={theme && theme?.Secondary}
               onSubmitEditing={() => {
                 onSubmitSearch && onSubmitSearch(SearchText);
                 cleanTextOnSubmit && this.setState({ SearchText: "" });
@@ -87,21 +84,18 @@ class HeaderComponent extends Component {
               }}
             />
           ) : (
-            <Text style={Styles.TitleStyle}>{title}</Text>
+            <Text style={[Styles.TitleStyle, theme && {color: theme.TextColor}]}>{title}</Text>
           )}
         </View>
-        {Validite(rightIcons) && rightIcons?.length > 0 ? (
+        {(Validate(rightIcons) && rightIcons?.length > 0) || searchBar  ? (
           <View style={Styles.Right}>
             {!searchBar ? (
               rightIcons.map((icon, index) => {
                 return (
                   <Icon
                     key={`key-${icon.name}-${index}`}
-                    name={icon.name}
-                    onPress={icon.onPress}
-                    iconStyle={
-                      icon.style ? icon.style : { tintColor: theme.Primary }
-                    }
+                    color={theme && theme.Primary}
+                    {...icon}
                   />
                 );
               })
@@ -109,7 +103,8 @@ class HeaderComponent extends Component {
               <Icon
                 name={"close"}
                 onPress={this.onPressX}
-                style={[Styles.SearchIcon1, { tintColor: theme.Primary }]}
+                style={[Styles.SearchIcon1]}
+                color={theme && theme.Primary}
               />
             )}
           </View>
@@ -129,16 +124,20 @@ const Styles = StyleSheet.create({
   },
   SearchInput: {
     width: "100%",
-    maxHeight: 40,
+    paddingHorizontal: 10
   },
-  Left: { flex: 0.2, justifyContent: "center", alignItems: "flex-start" },
-  Body: { flex: 1, padding: 8, paddingLeft: 18, justifyContent: "center" },
+  Left: {
+    flex: 0,
+    justifyContent: "flex-start",
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  Body: { flex: 1, justifyContent: "center", alignItems: 'center' },
   Right: {
-    flex: 1,
+    flex: 0,
     justifyContent: "flex-end",
     flexDirection: "row",
     alignItems: "center",
-    marginRight: 6,
   },
   center: { alignItems: "center" },
   row: { flexDirection: "row" },
@@ -147,7 +146,9 @@ const Styles = StyleSheet.create({
     fontSize: 20,
     lineHeight: 24,
     fontWeight: "800",
-    textAlign: "left",
+    textAlign : 'left',
+    paddingHorizontal: 10,
+    paddingVertical: 10
   },
   container: {
     flexDirection: "row",
