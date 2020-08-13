@@ -1,9 +1,4 @@
-import {
-  StyleProp,
-  ViewStyle,
-  ImageProps,
-  TouchableWithoutFeedbackProps,
-} from "react-native";
+import { ImageProps, TouchableWithoutFeedbackProps } from "react-native";
 import { OriginalIconNames } from "../../packs/Original/types";
 import { InterfaceIconNames } from "../../packs/Interface/types";
 
@@ -19,6 +14,6 @@ export type IconProps = {
 
 export type IconState = {};
 
-export type IconFamilies = "Original" | "Interface" | "Creative";
+export type IconFamilies = "Original" | "Interface";
 
 export type IconNames = OriginalIconNames | InterfaceIconNames;

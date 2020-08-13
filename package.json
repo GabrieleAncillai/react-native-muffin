@@ -1,6 +1,6 @@
 {
   "name": "react-native-muffin",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A components package made with love and react-native original stuff",
   "main": "index.js",
   "scripts": {
@@ -21,8 +21,5 @@
     "url": "https://github.com/GabrieleAncillai/react-native-muffin/issues"
   },
   "homepage": "https://github.com/GabrieleAncillai/react-native-muffin#readme",
-  "dependencies": {
-    "react": "^16.13.1",
-    "react-native": "^0.63.2"
-  }
+  "dependencies": {}
 }

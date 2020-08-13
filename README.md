@@ -1,8 +1,8 @@
 # react-native-muffin
 
-# !!! WARNING !!!
+<!--- # !!! WARNING !!!
 
-This package is still in development, so most of its content has bugs, i do NOT recommend using this early versions for important apps, use it at your own risk.
+This package is still in development, so most of its content has bugs, i do NOT recommend using this early versions for important apps, use it at your own risk. --->
 
 ## Installation
 
@@ -24,13 +24,14 @@ yarn add react-native-muffin
 
 #### _Props_:
 
-| Name    | Type                 | Requires | Description                                                                           |
-| ------- | -------------------- | -------- | ------------------------------------------------------------------------------------- |
-| name    | String               | -        | Name of the icon is going to be rendered, default is 'person'                         |
-| size    | Number               | -        | Size of the icon, default value is 25                                                 |
-| color   | String               | -        | Color of the icon, default is 'blue'                                                  |
-| onPress | Function             | -        | Function to execute when pressing the icon                                            |
-| style   | StyleProp<ViewStyle> | -        | Optional style to apply on Image component, (has higher priority than color and size) |
+| Name      | Type       | Requires | Description                                                                           |
+| --------- | ---------- | -------- | ------------------------------------------------------------------------------------- |
+| name      | String     | -        | Name of the icon is going to be rendered, default is 'person'                         |
+| size      | Number     | -        | Size of the icon, default value is 25                                                 |
+| color     | String     | -        | Color of the icon, default is 'blue'                                                  |
+| onPress   | Function   | -        | Function to execute when pressing the icon                                            |
+| style     | ViewStyle  | -        | Optional Style for the outer TouchableOpacity                                         |
+| iconStyle | ImageStyle | -        | Optional style to apply on Image component, (has higher priority than color and size) |
 
 #### _Usage_:
 
@@ -51,6 +52,12 @@ class SomeComponent extends Component {
 }
 ```
 
+#### _Families_:
+
+##### - Interface: https://www.flaticon.es/packs/interface-icon-collection
+
+<!-- ##### - Universal: https://www.flaticon.es/packs/universal-interface -->
+
 ### Dialog
 
 #### _Props_:
@@ -59,14 +66,14 @@ class SomeComponent extends Component {
 | ------------------------- | ---------------------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | visible                   | Boolean                | -        | [The visible prop determines whether your dialog is visible.](https://reactnative.dev/docs/modal#visible)                                                        |
 | title                     | String                 | -        | The title prop provides a Text Component in the dialog where displays the prop                                                                                   |
-| titleStyle                | StyleProp<TextStyle>   | -        | Sets the style of the title Text Component                                                                                                                       |
+| titleStyle                | TextStyle              | -        | Sets the style of the title Text Component                                                                                                                       |
 | message                   | String                 | -        | The message prop provides a Text Component in the dialog where displays the prop, it's like a subtitle for the dialog                                            |
-| messageStyle              | StyleProp<TextStyle>   | -        | Sets the style of the message Text Component                                                                                                                     |
+| messageStyle              | TextStyle              | -        | Sets the style of the message Text Component                                                                                                                     |
 | buttons                   | Array<React.Component> | -        | [The buttons prop is an array where you can render various React Components](https://www.npmjs.com/package/react-native-simple-dialogs)                          |
-| buttonsStyle              | StyleProp<ViewStyle>   | -        | Sets the style of the main external View Component where buttons are rendered                                                                                    |
-| dialogStyle               | StyleProp<ViewStyle>   | -        | Sets the style of the main internal View Component                                                                                                               |
-| overlayStyle              | StyleProp<ViewStyle>   | -        | Sets the style of the main external View Component                                                                                                               |
-| contentStyle              | StyleProp<ViewStyle>   | -        | Sets the style of the external Children Component                                                                                                                |
+| buttonsStyle              | ViewStyle              | -        | Sets the style of the main external View Component where buttons are rendered                                                                                    |
+| dialogStyle               | ViewStyle              | -        | Sets the style of the main internal View Component                                                                                                               |
+| overlayStyle              | ViewStyle              | -        | Sets the style of the main external View Component                                                                                                               |
+| contentStyle              | ViewStyle              | -        | Sets the style of the external Children Component                                                                                                                |
 | animationType             | String                 | -        | [The animationType prop controls how the dialog animates.](https://reactnative.dev/docs/modal#animationtype)                                                     |
 | onDismiss                 | Function               | -        | [The onDismiss prop allows passing a function that will be called once the dialog has been dismissed.](https://reactnative.dev/docs/modal#ondismiss)             |
 | onShow                    | Function               | -        | [The onShow prop allows passing a function that will be called once the dialog has been shown.](https://reactnative.dev/docs/modal#onshow)                       |
@@ -100,28 +107,24 @@ class SomeComponent extends Component {
 
 #### _Props_:
 
-| Name              | Type          | Requires                    | Description                                                                                                                                                                                                                                                           |
-| ----------------- | ------------- | --------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| title             | String        | -                           | Title that header is going to show                                                                                                                                                                                                                                    |
-| rightIconName     | String        | -                           | Name of the icon to show on the right side                                                                                                                                                                                                                            |
-| rightIconName2    | String        | -                           | Name of the icon to show next to first Right Icon                                                                                                                                                                                                                     |
-| rightIconName3    | String        | -                           | Name of the icon to show next to second Right Icon                                                                                                                                                                                                                    |
-| leftIconName      | String        | -                           | Name of the icon to show on the left side                                                                                                                                                                                                                             |
-| onPressRight      | Function      | **rightIconName**           | Function executed by first Right Icon                                                                                                                                                                                                                                 |
-| onPressRight2     | Function      | **rightIconName2**          | Function executed by second Right Icon                                                                                                                                                                                                                                |
-| onPressRight3     | Function      | **rightIconName3**          | Function executed by third Right Icon                                                                                                                                                                                                                                 |
-| onPressLeft       | Function      | **leftIconName**            | Function executed by first Left Icon                                                                                                                                                                                                                                  |
-| searchBar         | Boolean       | -                           | Indicates to the Header component when it has to render in SearchBar mode                                                                                                                                                                                             |
-| placeholder       | String        | -                           | Placeholder of the TextInput rendered in SearchBar mode                                                                                                                                                                                                               |
-| autofocus         | Boolean       | -                           | It represents the autofocus prop of the TextInput rendered in SearchBar mode                                                                                                                                                                                          |
-| onChangeText      | Function      | **searchBar**               | Function executed when TextInput rendered in SearchBar mode changes its content, as normal, it returns the text from input: (text) => {}                                                                                                                              |
-| onSubmitSearch    | Function      | **searchBar**               | Function executed when Enter Key is pressed on TextInput rendered in SearchBar mode                                                                                                                                                                                   |
-| cleanTextOnSubmit | Boolean       | **searchBar**               | Indicates if TextInput rendered in SearchBar mode has to be cleared after submiting                                                                                                                                                                                   |
-| data              | Array<Object> | **searchBar**               | If your header is on top of a list of items, you can send to the header the data you are listing to get a filtered version of that list with the method <<onChangeSearchBar>>                                                                                         |
-| search_PropName_1 | String        | -                           | To filter the array sent in the data prop, you need to put at least 1 reference of the attribute you want to focus on, Ex: [{title: 'Hello'}], the respective form is search_PropName_1="title", this function will compare the TextInput value with the object value |
-| search_PropName_2 | String        | **search_PropName_1**       | Same as search_PropName_1 but with less priority                                                                                                                                                                                                                      |
-| search_PropName_3 | String        | **search_PropName_2**       | Same as search_PropName_2 but with even less priority                                                                                                                                                                                                                 |
-| onChangeSearchBar | Function      | **data, search_PropName_1** | Function executed when TextInput rendered in SearchBar mode changes its content, but this time, it returns the filtered data of the array sent in its input                                                                                                           |
+| Name              | Type               | Requires                    | Description                                                                                                                                                                                                                                                           |
+| ----------------- | ------------------ | --------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| title             | String             | -                           | Title that header is going to show                                                                                                                                                                                                                                    |
+| rightIcons        | Array(IconObjects) | -                           | Name of the icon to show on the right side                                                                                                                                                                                                                            |
+| leftIcons         | Array(IconObjects) | -                           | Name of the icon to show on the left side                                                                                                                                                                                                                             |
+| searchBar         | Boolean            | -                           | Indicates to the Header component when it has to render in SearchBar mode                                                                                                                                                                                             |
+| placeholder       | String             | -                           | Placeholder of the TextInput rendered in SearchBar mode                                                                                                                                                                                                               |
+| autoFocus         | Boolean            | -                           | [It represents the autofocus prop of the TextInput rendered in SearchBar mode](https://reactnative.dev/docs/textinput#autofocus)                                                                                                                                      |
+| autoCorrect       | Boolean            | -                           | [If false, disables auto-correct. The default value is true](https://reactnative.dev/docs/textinput#autocorrect)                                                                                                                                                      |
+| autoCapitalize    | String             | -                           | [Can tell TextInput to automatically capitalize certain characters. This property is not supported by some keyboard types such as name-phone-pad](https://reactnative.dev/docs/textinput#autocapitalize)                                                              |
+| titleAlign        | String             | -                           | [describes how to align children along the cross axis of their container. Align items is very similar to justifyContent but instead of applying to the main axis, alignItems applies to the cross axis](https://reactnative.dev/docs/flexbox#align-items)             |
+| onChangeText      | Function           | **searchBar**               | Function executed when TextInput rendered in SearchBar mode changes its content, as normal, it returns the text from input: (text) => {}                                                                                                                              |
+| onSubmitSearch    | Function           | **searchBar**               | Function executed when Enter Key is pressed on TextInput rendered in SearchBar mode                                                                                                                                                                                   |
+| cleanTextOnSubmit | Boolean            | **searchBar**               | Indicates if TextInput rendered in SearchBar mode has to be cleared after submitting                                                                                                                                                                                  |
+| data              | Array(Object)      | **searchBar**               | If your header is on top of a list of items, you can send to the header the data you are listing to get a filtered version of that list with the method <<onChangeSearchBar>>                                                                                         |
+| searchPropNames   | Array(String)      | -                           | To filter the array sent in the data prop, you need to put at least 1 reference of the attribute you want to focus on, Ex: [{title: 'Hello'}], the respective form is search_PropName_1="title", this function will compare the TextInput value with the object value |  |
+| onChangeSearchBar | Function           | **data, search_PropName_1** | Function executed when TextInput rendered in SearchBar mode changes its content, but this time, it returns the filtered data of the array sent in its input                                                                                                           |
+| theme             | ThemeType          | -                           | Assigns themed colors to Header following the ThemeType Schema                                                                                                                                                                                                        |
 
 #### _Usage_:
 
@@ -133,10 +136,18 @@ class SomeComponent extends Component {
     return (
       <Header
         title={"Home"}
-        rightIconName={"bell"}
-        leftIconName={"arrow-back"}
-        onPressRight={() => console.log("Right Pressed!")}
-        onPressLeft={() => console.log("Left Pressed!")}
+        rightIcons={[
+          {
+            name: "bell",
+            onPress: () => console.log("Right Pressed!"),
+          },
+        ]}
+        leftIcons={[
+          {
+            name: "arrow-back",
+            onPress: () => console.log("Left Pressed!"),
+          },
+        ]}
       />
     );
   }
@@ -145,53 +156,52 @@ class SomeComponent extends Component {
 
 # Functions
 
-### - SimpleAlert()
+### SimpleAlert()
 
 Executes a React Native alert but as a function receiving 7 parameters
 
 #### _Params_:
 
-- Title: Title of the Alert <String>
-- SubTitle: Subtitle of the Alert <String>
-- RightButtonText: Title of right button <String>
-- onPressRightButton: Function executed on press right button <Function>
-- LeftButtonText: Title of left button <String>
-- onPressLeftButton: Function executed on press left button <Function>
-- Cancelable: Sets if the alert can be cancelled <Boolean>
+- Title: Title of the Alert (String)
+- SubTitle: Subtitle of the Alert (String)
+- RightButtonText: Title of right button (String)
+- onPressRightButton: Function executed on press right button (Function)
+- LeftButtonText: Title of left button (String)
+- onPressLeftButton: Function executed on press left button (Function)
+- Cancelable: Sets if the alert can be cancelled (Boolean)
 
-### - ConfigAlert()
+### ConfigAlert()
 
 Executes a React Native alert but only receiving one parameter, an object that has the 7 parameters from SimpleAlert but as attributes
 
-#### _Param_: {
+#### _Param_:
 
-- title: Title of the Alert <String>
-- subTitle: Subtitle of the Alert <String>
-- rightButtonText: Title of right button <String>
-- onPressRightButton: Function executed on press right button <Function>
-- leftButtonText: Title of left button <String>
-- onPressLeftButton: Function executed on press left button <Function>
-- cancelable: Sets if the alert can be cancelled <Boolean>
+- Object:
+  - title: Title of the Alert (String)
+  - subTitle: Subtitle of the Alert (String)
+  - rightButtonText: Title of right button (String)
+  - onPressRightButton: Function executed on press right button (Function)
+  - leftButtonText: Title of left button (String)
+  - onPressLeftButton: Function executed on press left button (Function)
+  - cancelable: Sets if the alert can be cancelled (Boolean)
 
-#### }
-
-### - CopyToClipboard()
+### CopyToClipboard()
 
 Copies into the device clipboard the text sent to the function
 
 #### _Param_:
 
-- Text: Send as parameter the text you want to copy on your clipboard <String>
+- Text: Send as parameter the text you want to copy on your clipboard (String)
 
-### - ValidateEmptyObject()
+### ValidateEmptyObject()
 
 Like a regular validation but returns false if object doesn't have any key or attribute
 
 #### _Param_:
 
-- Objct: It will return true if Object sent has any key. instead, if object is equal to "{}" returns false <Object>
+- Objc: It will return true if Object sent has any key. instead, if object is equal to "{}" returns false (Object)
 
-### - RoundFixed2()
+### RoundFixed2()
 
 Returns a rounded number based on input, already fixed by 2 decimals
 
@@ -199,18 +209,17 @@ Returns a rounded number based on input, already fixed by 2 decimals
 
 - Number: Float or integer numbers are valid <Number>
 
-### - UpdateReducer()
+### UpdateReducer()
 
 Returns a fixed & updated reducer based on the Current Reducer and the Initial Reducer, but it needs a specific process to make it work
 
-#### _Param_: {
+#### _Param_:
 
-- InitialReducer: Initial state defined for the reducer <Object>
-- CurrentReducer: Current state of the reducer you want to update <Object>
+- Object:
+  - InitialReducer: Initial state defined for the reducer (Object)
+  - CurrentReducer: Current state of the reducer you want to update (Object)
 
-#### }
-
-#### _Setup_:
+#### Setup:
 
 ```js
 import { UpdateReducer } from "react-native-muffin";
@@ -245,13 +254,13 @@ const reducer = (state = initialReducer, action) => {
 export default reducer;
 ```
 
-And after the setup, you can use it anywhere in the code by using the function
+After the setup, you can use it anywhere in the code by using the function
 
 ```js
 dispatch({ type: "UPDATE_REDUCER" });
 ```
 
-in any of your "connected to redux" components using "mapDispatchToProps", (Is needed an unique setup for each reducer and a dispatch as well...)
+in any of your "connected to redux" components using "mapDispatchToProps", (Is needed a unique setup for each reducer, and a dispatch as well...)
 
 ## License
 

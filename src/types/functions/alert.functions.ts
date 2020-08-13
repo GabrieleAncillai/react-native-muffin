@@ -1,9 +1,9 @@
 export type AlertConfigType = {
-  Title: String;
-  SubTitle: String;
-  RightButtonText: String;
+  title: String;
+  subTitle: String;
+  rightButtonText: String;
   onPressRightButton: Function;
-  LeftButtonText: String;
+  leftButtonText: String;
   onPressLeftButton: Function;
-  Cancelable: Boolean;
+  cancelable: Boolean;
 };

@@ -1,4 +1,4 @@
-import { IconNames, IconFamilies, IconProps } from "./icon.component";
+import { IconProps } from "./icon.component";
 import { ThemeType } from "../settings/theme";
 import { TextInputProps, FlexStyle } from "react-native";
 
@@ -20,11 +20,10 @@ export type HeaderProps = {
   autoFocus?: TextInputProps["autoFocus"];
   autoCorrect?: TextInputProps["autoCorrect"];
   autoCapitalize?: TextInputProps["autoCapitalize"];
-  titleAlign: FlexStyle['alignItems']
+  titleAlign: FlexStyle["alignItems"];
   theme?: ThemeType;
 };
 
 export type HeaderState = {
   SearchText: String;
 };
-
